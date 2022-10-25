@@ -158,14 +158,19 @@ public class PredicateSpec extends UriSpec {
      * 断言, 检查远程地址
      * */
     public BooleanSpec remoteAddr(RemoteAddressResolver resolver, String... addrs) {
-
+        return asyncPredicate(getBean(RemoteAddrRoutePredicateFactory.class).applyAsync(c -> {
+            c.setSources(addrs);
+            if (resolver != null) {
+                c.setRemoteAddressResolver(resolver);
+            }
+        }));
     }
 
     /**
      * 断言, 检查远程地址
      * */
     public BooleanSpec xForwardedRemoteAddr(String... addrs) {
-
+        return asyncPredicate(getBean(XForwardedRemoteAddrRoutePredicateFactory.class).applyAsync(c -> c.setSources(addrs)));
     }
 
     /**
