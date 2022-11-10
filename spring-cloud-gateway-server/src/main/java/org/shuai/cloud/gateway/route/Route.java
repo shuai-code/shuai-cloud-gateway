@@ -73,6 +73,10 @@ public class Route implements Ordered {
             return getThis();
         }
 
+        public String getId() {
+            return id;
+        }
+
         public Route build() {
 
         }

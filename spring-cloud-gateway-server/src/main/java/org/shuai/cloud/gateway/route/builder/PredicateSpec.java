@@ -177,11 +177,12 @@ public class PredicateSpec extends UriSpec {
      * 断言, 根据指定的权重选择路由
      * */
     public BooleanSpec weight(String group, int weight) {
-
+        return asyncPredicate(getBean(WeightRoutePredicateFactory.class).applyAsync(c -> c.setGroup(group).setRouteId(routeBuilder.getId()).setWeight(weight)));
     }
 
     public BooleanSpec cloudFoundryRouteService() {
-
+        return predicate(getBean(CloudFoundryRouteServiceRoutePredicateFactory.class).apply(c -> {
+        }));
     }
 
     /**
@@ -192,6 +193,6 @@ public class PredicateSpec extends UriSpec {
     }
 
     public BooleanSpec not(Function<PredicateSpec, BooleanSpec> fn) {
-
+        return alwaysTrue().and().not(fn);
     }
 }

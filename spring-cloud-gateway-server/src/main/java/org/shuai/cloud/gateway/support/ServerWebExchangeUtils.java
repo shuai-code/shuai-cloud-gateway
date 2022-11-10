@@ -25,6 +25,8 @@ public class ServerWebExchangeUtils {
 
     private static final Log log = LogFactory.getLog(ServerWebExchangeUtils.class);
 
+    public static final String WEIGHT_ATTR = qualify("routeWeight");
+
     public static final String URI_TEMPLATE_VARIABLES_ATTRIBUTE = qualify("uriTemplateVariables");
 
     public static final String GATEWAY_PREDICATE_MATCHED_PATH_ATTR = qualify("gatewayPredicateMatchedPathAttr");
